@@ -54,10 +54,7 @@
         </p>
       </div>
 
-      <div class="music-box">
-        <button class="music-button" id="playButton" type="button">Speel onze love song af &#10084;</button>
-        <p class="music-note">Voeg een bestand met de naam <strong>love-song.mp3</strong> toe in dezelfde map als deze site.</p>
-      </div>
+      <p class="music-note">Raak de pagina een keer aan en onze love song begint meteen te spelen.</p>
 
       <div class="heart-row" aria-hidden="true">
         <span>&#10084;</span>
@@ -71,19 +68,34 @@
 
   <script>
     const loveSong = document.getElementById("loveSong");
-    const playButton = document.getElementById("playButton");
+    let songStarted = false;
 
     async function startSong() {
+      if (songStarted) {
+        return;
+      }
+
       try {
         await loveSong.play();
-        playButton.textContent = "Onze love song speelt nu " + String.fromCharCode(10084);
-        playButton.classList.add("is-playing");
+        songStarted = true;
+        document.body.classList.add("song-is-playing");
+        removeStartListeners();
       } catch (error) {
-        playButton.textContent = "Klik hier om onze love song af te spelen " + String.fromCharCode(10084);
+        songStarted = false;
       }
     }
 
-    playButton.addEventListener("click", startSong);
+    function removeStartListeners() {
+      document.removeEventListener("click", startSong);
+      document.removeEventListener("pointerdown", startSong);
+      document.removeEventListener("keydown", startSong);
+      document.removeEventListener("touchstart", startSong);
+    }
+
+    document.addEventListener("click", startSong);
+    document.addEventListener("pointerdown", startSong);
+    document.addEventListener("keydown", startSong);
+    document.addEventListener("touchstart", startSong);
     window.addEventListener("load", startSong);
   </script>
 </body>
