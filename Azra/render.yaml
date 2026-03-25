@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: azra-askim
+    runtime: static
+    buildCommand: ""
+    staticPublishPath: .
