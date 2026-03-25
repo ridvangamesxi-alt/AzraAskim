@@ -1,0 +1,204 @@
+:root {
+  --bg-top: #fff1f4;
+  --bg-bottom: #ffd8e2;
+  --card: rgba(255, 255, 255, 0.82);
+  --text: #592336;
+  --accent: #d94b75;
+  --accent-dark: #b62d58;
+  --soft: #fff7fa;
+  --shadow: 0 24px 60px rgba(151, 37, 78, 0.18);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Quicksand", sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.85), transparent 34%),
+    radial-gradient(circle at bottom right, rgba(255, 182, 193, 0.45), transparent 28%),
+    linear-gradient(160deg, var(--bg-top), var(--bg-bottom));
+  overflow-x: hidden;
+}
+
+.hero {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 40px 18px;
+}
+
+.card {
+  width: min(920px, 100%);
+  background: var(--card);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 32px;
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(10px);
+  padding: 38px 24px 32px;
+  position: relative;
+}
+
+.card::before,
+.card::after {
+  content: "\2665";
+  position: absolute;
+  font-size: clamp(2rem, 5vw, 3.6rem);
+  color: rgba(217, 75, 117, 0.18);
+}
+
+.card::before {
+  top: 16px;
+  left: 20px;
+}
+
+.card::after {
+  right: 20px;
+  bottom: 10px;
+}
+
+.eyebrow {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--accent-dark);
+  text-align: center;
+}
+
+h1 {
+  margin: 16px auto 18px;
+  max-width: 11ch;
+  text-align: center;
+  font-family: "Playfair Display", serif;
+  font-size: clamp(2.4rem, 7vw, 5.3rem);
+  line-height: 0.98;
+}
+
+.intro,
+.love-note p {
+  margin: 0 auto;
+  max-width: 640px;
+  text-align: center;
+  font-size: 1.07rem;
+  line-height: 1.8;
+}
+
+.photo-frame {
+  width: min(520px, 100%);
+  margin: 32px auto 30px;
+  position: relative;
+  background: linear-gradient(180deg, #ffffff, #ffe7ee);
+  border-radius: 28px;
+  padding: 14px;
+  box-shadow: 0 18px 40px rgba(182, 45, 88, 0.16);
+}
+
+.photo-frame img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border-radius: 20px;
+  border: 5px solid rgba(255, 255, 255, 0.9);
+  background: linear-gradient(135deg, #f6ced8, #fffafb);
+}
+
+.photo-hearts {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%) rotate(-10deg);
+  font-size: 1.2rem;
+  color: var(--accent);
+  opacity: 0.85;
+  letter-spacing: 0.12em;
+}
+
+.photo-hearts-left {
+  left: -18px;
+}
+
+.photo-hearts-right {
+  right: -18px;
+  transform: translateY(-50%) rotate(10deg);
+}
+
+.love-note {
+  display: grid;
+  gap: 16px;
+}
+
+.heart-row {
+  margin-top: 26px;
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  font-size: 1.6rem;
+  color: var(--accent);
+}
+
+.floating-hearts {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.floating-hearts span {
+  position: absolute;
+  bottom: -40px;
+  color: rgba(217, 75, 117, 0.45);
+  font-size: clamp(1rem, 2vw, 1.8rem);
+  animation: drift 12s linear infinite;
+}
+
+.floating-hearts span:nth-child(1) { left: 8%; animation-delay: 0s; }
+.floating-hearts span:nth-child(2) { left: 18%; animation-delay: 2s; }
+.floating-hearts span:nth-child(3) { left: 30%; animation-delay: 5s; }
+.floating-hearts span:nth-child(4) { left: 44%; animation-delay: 1s; }
+.floating-hearts span:nth-child(5) { left: 58%; animation-delay: 4s; }
+.floating-hearts span:nth-child(6) { left: 70%; animation-delay: 6s; }
+.floating-hearts span:nth-child(7) { left: 82%; animation-delay: 3s; }
+.floating-hearts span:nth-child(8) { left: 92%; animation-delay: 7s; }
+
+@keyframes drift {
+  0% {
+    transform: translateY(0) scale(0.8);
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(-115vh) scale(1.2) translateX(18px);
+    opacity: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .card {
+    padding: 28px 16px 24px;
+    border-radius: 24px;
+  }
+
+  .photo-frame {
+    padding: 10px;
+  }
+
+  .photo-hearts {
+    display: none;
+  }
+
+  .intro,
+  .love-note p {
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+}
